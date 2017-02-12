@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      xmlns:compat="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/gift_shop"
+        android:orderInCategory="90"
+        android:title="gift_shop"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_favorite_white_48dp"
+        />
+
+    <item
+        android:id="@+id/location"
+        android:orderInCategory="90"
+        android:title="action_share"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_favorite_white_48dp"
+        />
+
+</menu>
