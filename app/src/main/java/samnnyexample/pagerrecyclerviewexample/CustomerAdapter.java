@@ -22,16 +22,11 @@ import java.util.List;
 public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.RecyclerViewHolder> {
   private Context hello;
   private static final int IS_HEADER = 2;
-  private static final int IS_FOOTER = 3;
+//  private static final int IS_FOOTER = 3;
   private static final int IS_NORMAL = 1;
-
-//  private int[] imageRes = new int[] {R.drawable.home_canto, R.drawable.home_snack,R.drawable.home_canto,
-//          R.drawable.home_jap, R.drawable.home_sefood, R.drawable.home_snack, R.drawable.home_schuan700,R.drawable.home_canto,
-//          R.drawable.home_jap, R.drawable.home_sefood, R.drawable.home_snack, R.drawable.home_schuan700}; // 图片ID
 
   private String[] colorId = new String[]{"#00A5BF", "#1D697C", "#763568", "#A4345D", "#C91F37" ,"#FF4E20" ,"#FFA631"};
   private String[] SampleText = new String[]{"hello", "this", "is", "material", "design","!","!"};
-  //private static List<Integer> titleList = new ArrayList<Integer>();
 
 
   //view pager
@@ -90,7 +85,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Recycl
 //      return holder;
 //    }
 
-    else if(viewType==IS_NORMAL){
+    else if (viewType==IS_NORMAL){
       View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.home_recycler_item, viewGroup, false);
       holder = new RecyclerViewHolder(view,IS_NORMAL);
       return holder;
@@ -102,28 +97,9 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Recycl
   public void onBindViewHolder(final RecyclerViewHolder recyclerViewHolder, int position) {
     //对不同的Item相应不同的操作
     if(position!=0&&position!=colorId.length+1&&recyclerViewHolder.viewType==IS_NORMAL){
-      //recyclerViewHolder.mTextView.setText(datas.get(position - 1));
-//      recyclerViewHolder.imgView.setImageResource(imageRes[position]);
-
-
       recyclerViewHolder.imgView.setBackgroundColor(Color.parseColor(colorId[position]));
       recyclerViewHolder.txtView.setText(SampleText[position]);
-//      recyclerViewHolder.imgView.setScaleType(ImageView.ScaleType.CENTER_CROP);
     }
-//    if(position==0&&recyclerViewHolder.viewType==IS_HEADER){
-//      //header
-////      recyclerViewHolder.mButton.setOnClickListener(new View.OnClickListener() {
-////        int i=0;
-////        @Override
-////        public void onClick(View v) {
-////          recyclerViewHolder.mButton.setText(++i+"");
-////        }
-////      });
-//    }
-//    if(position==datas.size()+1&&recyclerViewHolder.viewType==IS_FOOTER){
-//      //footer
-//    }
-
   }
 
   @Override
@@ -137,7 +113,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Recycl
     if (position == 0) {
       return IS_HEADER;
     }
-//    else if(position==datas.size()+1){
+//    else if(position==datas.size()){
 //      return IS_FOOTER;
 //    }
 
@@ -171,12 +147,6 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Recycl
       }
     }
   }
-
-
-
-
-
-
 
   //######################################################################################viewpager  */
   private class MyPageChangeListener implements ViewPager.OnPageChangeListener {

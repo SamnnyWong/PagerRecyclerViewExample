@@ -19,6 +19,7 @@
         <item name="android:layout_marginRight">2dip</item>
     </style>
 
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
