@@ -39,4 +39,4 @@ Please, do it! We'd like to improve this library with your help :)
 
 
 
-[1]: ./sample.gif
+[1]: ./example.gif
