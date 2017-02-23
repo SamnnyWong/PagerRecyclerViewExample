@@ -5,12 +5,6 @@
     android:id="@+id/imageViewer"
     android:layout_below="@+id/toolbar">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vpheader"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginBottom="2dp"/>
-
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="25dip"
@@ -42,4 +36,10 @@
                 style="@style/dot_style" />
         </LinearLayout>
     </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vpheader"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginBottom="2dp"/>
 </FrameLayout>

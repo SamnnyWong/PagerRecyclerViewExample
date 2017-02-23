@@ -5,20 +5,105 @@ ScreenShot
 ![Demo Screenshot][1]
 
 
+How it works?
+----------------------
+we first define 2 different views: 1.header view 2.normal view (in this case, a CardVIew).
+
+RecyclerView Adapter will determine which type of view it will gets based on the index of the recyclerview item. (Here we only have two cases: a header or not a header.)
+
 Add it to your project
 ----------------------
- [version may vary]
+ In your build.gradle: [version may vary]
+
 ```groovy
 
 dependencies{
     compile  compile 'com.android.support:recyclerview-v7:24.2.1'
-             compile 'com.android.support:design:24.2.1'
-             compile 'com.android.support:cardview-v7:24.2.1'
 }
 
 ```
+In this example, I used CardView to fill the RecyclerView, so the dependency for this specific example needs to compile CardView.
+But hey, if you don't need it for this to work. :)
+
 Usage
 -----
+
+Define `HeaderView` in xml layout with custom attributes.
+```xml
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="220dp"
+    android:id="@+id/imageViewer"
+    android:layout_below="@+id/toolbar">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="25dip"
+        android:layout_gravity="bottom"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dip"
+            android:gravity="center" >
+
+            <View
+                android:id="@+id/v_dot0"
+                style="@style/dot_style"
+                android:background="@drawable/dot_focused" />
+
+            <View
+                android:id="@+id/v_dot1"
+                style="@style/dot_style" />
+
+            <View
+                android:id="@+id/v_dot2"
+                style="@style/dot_style" />
+
+            <View
+                android:id="@+id/v_dot3"
+                style="@style/dot_style" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vpheader"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginBottom="2dp"/>
+</FrameLayout>
+```
+
+In order to indicate which view we are currently at in the header, we define 2 types of dots: the focused fot and the normal dot.(put them in the drawable)
+
+* the focused dot
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+       android:shape="oval" >
+    <corners android:radius="5dip" />
+    <solid android:color="#aaFFFFFF" />
+</shape>
+```
+
+* The normal dot
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<shape
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval" >
+    <corners android:radius="5dip" />
+    <solid android:color="#33000000" />
+</shape>
+```
+
+Now we finished the define of header, so what happen to the rest of the item?
+Remember it could be anything you want, I will leave you to decide. :)
+
+
 * 1. In ActicityView
 
 ```java
