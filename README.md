@@ -171,7 +171,6 @@ public RecyclerViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) 
 
     public void onPageSelected(int position) {
       currentItem = position;
-//      tv_title.setText(titles[position]);
       dots.get(oldPosition).setBackgroundResource(R.drawable.dot_normal);
       dots.get(position).setBackgroundResource(R.drawable.dot_focused);
       oldPosition = position;
@@ -183,38 +182,6 @@ public RecyclerViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) 
     public void onPageScrolled(int arg0, float arg1, int arg2) {
     }
   }
-
-  private class MyAdapter extends PagerAdapter {
-
-    @Override
-    public int getCount() {
-      return imageResId.length;
-    }
-
-    @Override
-    public Object instantiateItem(View arg0, int arg1) {
-      ((ViewPager) arg0).addView(imageViews.get(arg1));
-      return imageViews.get(arg1);
-    }
-
-    @Override
-    public void destroyItem(View arg0, int arg1, Object arg2) {
-      ((ViewPager) arg0).removeView((View) arg2);
-    }
-
-    @Override
-    public boolean isViewFromObject(View arg0, Object arg1) {
-      return arg0 == arg1;
-    }
-
-    @Override
-    public void restoreState(Parcelable arg0, ClassLoader arg1) {
-
-    }
-  }
-
-
-}
 ```
 
 
