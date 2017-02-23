@@ -31,14 +31,14 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Recycl
 
   //view pager
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-  private ViewPager viewPager; // android-support-v4中的滑动组件
-  private List<ImageView> imageViews; // 滑动的图片集合
+  private ViewPager viewPager;
+  private List<ImageView> imageViews;
 
-  private String[] titles; // 图片标题
+  private String[] titles;
   private int[] imageResId = new int[] { R.drawable.ad1, R.drawable.ad2, R.drawable.ad3, R.drawable.ad4 };
-  private List<View> dots; // 图片标题正文的那些点
+  private List<View> dots;
   private TextView tv_title;
-  private int currentItem = 0; // 当前图片的索引号
+  private int currentItem = 0;
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 

@@ -34,12 +34,6 @@ public class ActivityHome extends AppCompatActivity {
     // toolbar.setSubtitle("sub title");
     setSupportActionBar(mToolbar);
     mToolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
-    // 这些通过ActionBar来设置也是一样的，注意要在setSupportActionBar(toolbar);之后，不然就报错了
-    // getSupportActionBar().setTitle("标题");
-    // getSupportActionBar().setSubtitle("副标题");
-    // getSupportActionBar().setLogo(R.drawable.ic_launcher);
-    // 菜单的监听可以在toolbar里设置，也可以像ActionBar那样，通过Activity的onOptionsItemSelected回调方法来处理
-
     mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
       @Override
       public boolean onMenuItemClick(MenuItem item) {
@@ -74,7 +68,6 @@ public class ActivityHome extends AppCompatActivity {
 
 
   public void example(View view){
-
     Toast.makeText(this, "redirect to account", Toast.LENGTH_SHORT).show();
   }
 
