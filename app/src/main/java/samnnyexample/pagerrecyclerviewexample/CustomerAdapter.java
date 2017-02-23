@@ -20,8 +20,8 @@ import java.util.List;
  */
 
 public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.RecyclerViewHolder> {
-  private Context hello;
-  private static final int IS_HEADER = 2;
+  private Context context;
+  private static final int IS_HEADER = 0;
 //  private static final int IS_FOOTER = 3;
   private static final int IS_NORMAL = 1;
 
@@ -37,7 +37,6 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Recycl
   private String[] titles; // 图片标题
   private int[] imageResId = new int[] { R.drawable.ad1, R.drawable.ad2, R.drawable.ad3, R.drawable.ad4 };
   private List<View> dots; // 图片标题正文的那些点
-
   private TextView tv_title;
   private int currentItem = 0; // 当前图片的索引号
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -45,31 +44,26 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Recycl
 
 
   //constructor
-  public CustomerAdapter(Context hello) {
-    this.hello = hello;
-//    for (int i = 0; i <= imageRes.length; i++) {
-//      titleList.add(imageRes[i]);
-//    }
+  public CustomerAdapter(Context context) {
+    this.context = context;
   }
 
   @Override
   public RecyclerViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
     RecyclerViewHolder holder;
-    //对不同的flag创建不同的Holder
+    // Create different view holder with different flag
     if (viewType == IS_HEADER) {
       View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.home_header, viewGroup, false);
 
-
       imageViews = new ArrayList<ImageView>();
-      //re 初始化图片资源
       for (int i = 0; i < imageResId.length; i++) {
-        ImageView imageView = new ImageView(hello);
+        ImageView imageView = new ImageView(context);
         imageView.setImageResource(imageResId[i]);
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         imageViews.add(imageView);
 
       }
-      dots = new ArrayList<View>();; // 图片标题正文的那些点
+      dots = new ArrayList<View>(); // Pager indicators
       dots.add(view.findViewById(R.id.v_dot0));
       dots.add(view.findViewById(R.id.v_dot1));
       dots.add(view.findViewById(R.id.v_dot2));
@@ -80,8 +74,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Recycl
 
     }
 //    else if (viewType == IS_FOOTER) {
-//      View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.home_footer, viewGroup, false);
-//      holder = new RecyclerViewHolder(view,IS_FOOTER);
+//      you can define your special footer item here.
 //      return holder;
 //    }
 
@@ -161,11 +154,9 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Recycl
     }
 
     public void onPageScrollStateChanged(int arg0) {
-
     }
 
     public void onPageScrolled(int arg0, float arg1, int arg2) {
-
     }
   }
 
@@ -194,22 +185,6 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Recycl
 
     @Override
     public void restoreState(Parcelable arg0, ClassLoader arg1) {
-
-    }
-
-    @Override
-    public Parcelable saveState() {
-      return null;
-    }
-
-
-    @Override
-    public void startUpdate(View arg0) {
-
-    }
-
-    @Override
-    public void finishUpdate(View arg0) {
 
     }
   }

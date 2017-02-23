@@ -7,7 +7,7 @@ ScreenShot
 
 How it works?
 ----------------------
-we first define 2 different views: 1.header view 2.normal view (in this case, a CardVIew).
+We first define 2 different views: 1.header view 2.normal view (in this case, a CardVIew).
 
 RecyclerView Adapter will determine which type of view it will gets based on the index of the recyclerview item. (Here we only have two cases: a header or not a header.)
 
@@ -100,24 +100,135 @@ In order to indicate which view we are currently at in the header, we define 2 t
 </shape>
 ```
 
-Now we finished the define of header, so what happen to the rest of the item?
+Now we finished the define of header, so what happen to the rest of the item?<br />
 Remember it could be anything you want, I will leave you to decide. :)
 
+Nothing special in the Activity class, everything works the same as defining a normal recycler view.
 
-* 1. In ActicityView
-
-```java
-```
-
-* 2. In ActivityViewAdapter
+* 0 define the flags
 
 ```java
+ private static final int IS_HEADER = 0;
+  private static final int IS_NORMAL = 1;
 ```
+
+
+* 1 RecyclerView Adapter decides which type will it gets by calling the getItemViewType function
+
+```java
+  public int getItemViewType(int position) {
+    if (position == 0) {
+      return IS_HEADER;
+    }
+    else {
+      return IS_NORMAL;
+    }
+  }
+```
+
+
+* 2 In RecyclerViewAdapter
+
+```java
+
+public RecyclerViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+    RecyclerViewHolder holder;
+    // Create different view holder with different flag
+    if (viewType == IS_HEADER) {
+      View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.home_header, viewGroup, false);
+
+      imageViews = new ArrayList<ImageView>();
+      for (int i = 0; i < imageResId.length; i++) {
+        ImageView imageView = new ImageView(context);
+        imageView.setImageResource(imageResId[i]);
+        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        imageViews.add(imageView);
+
+      }
+      dots = new ArrayList<View>(); // an array of indicators
+      dots.add(view.findViewById(R.id.v_dot0));
+      dots.add(view.findViewById(R.id.v_dot1));
+      dots.add(view.findViewById(R.id.v_dot2));
+      dots.add(view.findViewById(R.id.v_dot3));
+      holder = new RecyclerViewHolder(view,IS_HEADER);
+      return holder;
+    }
+
+    else if (viewType==IS_NORMAL){
+      View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.home_recycler_item, viewGroup, false);
+      holder = new RecyclerViewHolder(view,IS_NORMAL);
+      return holder;
+    }
+    return null;
+  }
+```
+
+* 3 In ViewPagerAdapter
+
+```java
+ private class MyPageChangeListener implements ViewPager.OnPageChangeListener {
+    private int oldPosition = 0;
+
+    public void onPageSelected(int position) {
+      currentItem = position;
+//      tv_title.setText(titles[position]);
+      dots.get(oldPosition).setBackgroundResource(R.drawable.dot_normal);
+      dots.get(position).setBackgroundResource(R.drawable.dot_focused);
+      oldPosition = position;
+    }
+
+    public void onPageScrollStateChanged(int arg0) {
+    }
+
+    public void onPageScrolled(int arg0, float arg1, int arg2) {
+    }
+  }
+
+  private class MyAdapter extends PagerAdapter {
+
+    @Override
+    public int getCount() {
+      return imageResId.length;
+    }
+
+    @Override
+    public Object instantiateItem(View arg0, int arg1) {
+      ((ViewPager) arg0).addView(imageViews.get(arg1));
+      return imageViews.get(arg1);
+    }
+
+    @Override
+    public void destroyItem(View arg0, int arg1, Object arg2) {
+      ((ViewPager) arg0).removeView((View) arg2);
+    }
+
+    @Override
+    public boolean isViewFromObject(View arg0, Object arg1) {
+      return arg0 == arg1;
+    }
+
+    @Override
+    public void restoreState(Parcelable arg0, ClassLoader arg1) {
+
+    }
+  }
+
+
+}
+```
+
+
+
 
 Do you want to contribute?
 --------------------------
 
 Please, do it! We'd like to improve this library with your help :)
+
+
+
+
+
 
 
 
