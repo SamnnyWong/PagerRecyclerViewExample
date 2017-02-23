@@ -105,7 +105,7 @@ Remember it could be anything you want, I will leave you to decide. :)
 
 Nothing special in the Activity class, everything works the same as defining a normal recycler view.
 
-* 0 define the flags
+0. define the flags
 
 ```java
  private static final int IS_HEADER = 0;
@@ -113,7 +113,7 @@ Nothing special in the Activity class, everything works the same as defining a n
 ```
 
 
-* 1 RecyclerView Adapter decides which type will it gets by calling the getItemViewType function
+1. RecyclerView Adapter decides which type will it gets by calling the getItemViewType function
 
 ```java
   public int getItemViewType(int position) {
@@ -127,7 +127,7 @@ Nothing special in the Activity class, everything works the same as defining a n
 ```
 
 
-* 2 In RecyclerViewAdapter
+2. In RecyclerViewAdapter
 
 ```java
 
@@ -163,7 +163,7 @@ public RecyclerViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) 
   }
 ```
 
-* 3 In ViewPagerAdapter
+3. In ViewPagerAdapter
 
 ```java
  private class MyPageChangeListener implements ViewPager.OnPageChangeListener {
